@@ -3,7 +3,7 @@ import { Button } from '@/components/Button'
 import { Filter } from '@/components/Filter'
 import { Input } from '@/components/Input'
 import { Item } from '@/components/Item'
-import { Image, Text, TouchableOpacity, View } from 'react-native'
+import { Image, ScrollView, Text, TouchableOpacity, View } from 'react-native'
 import { styles } from './styles'
 
 const FILTER_STATUS: FilterStatus[] = [FilterStatus.PENDING, FilterStatus.DONE]
@@ -26,12 +26,16 @@ export function Home() {
             <Text style={styles.clearText}>Limpar</Text>
           </TouchableOpacity>
         </View>
-
-        <Item
-          data={{ status: FilterStatus.DONE, description: 'Café' }}
-          onStatus={() => console.log('Mudar status')}
-          onRemove={() => console.log('Remover')}
-        />
+        <ScrollView>
+          {Array.from({ length: 100 }).map((_, index) => (
+            <Item
+              key={index}
+              data={{ status: FilterStatus.DONE, description: 'Café' }}
+              onStatus={() => console.log('Mudar status')}
+              onRemove={() => console.log('Remover')}
+            />
+          ))}
+        </ScrollView>
       </View>
     </View>
   )
